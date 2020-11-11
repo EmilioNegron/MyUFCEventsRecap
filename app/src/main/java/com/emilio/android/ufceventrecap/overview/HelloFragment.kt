@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.emilio.android.ufceventrecap.R
 import com.emilio.android.ufceventrecap.databinding.FragmentHelloBinding
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.jakewharton.processphoenix.ProcessPhoenix
 import timber.log.Timber
 
@@ -24,6 +25,7 @@ private const val ARG_PARAM2 = "param2"
 class HelloFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,8 @@ class HelloFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        val application = requireNotNull(activity).application
+        firebaseAnalytics = FirebaseAnalytics.getInstance(application)
 
         val binding: FragmentHelloBinding = DataBindingUtil.inflate(
                 inflater,
@@ -47,11 +51,12 @@ class HelloFragment : Fragment() {
 
         binding.goToDevByteScreen = GoToDevByteScreen {
             try {
+                firebaseAnalytics.setUserProperty("DisplayPassedUFCEvents", "FAB to Events list has been clicked.")
                 findNavController().navigate(HelloFragmentDirections.actionHelloFragmentToDevByte())
             } catch (e: IllegalStateException) {
                 Timber.d("""Error: ${e.message}""")
                 Timber.d("Current bug in Android Fragment Navigation API. Need to find work-around.")
-                ProcessPhoenix.triggerRebirth(context);
+                ProcessPhoenix.triggerRebirth(context)
             }
         }
 

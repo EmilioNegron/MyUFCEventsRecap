@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import com.emilio.android.ufceventrecap.database.getDatabase
 import com.emilio.android.ufceventrecap.domain.DevByteEvent
 import com.emilio.android.ufceventrecap.repository.EventsRepository
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -22,6 +23,7 @@ import java.io.IOException
      * or fragment lifecycle events.
      */
     open class EventDetailViewModel(eventSelected: DevByteEvent, application: Application) : AndroidViewModel(application) {
+        private var firebaseAnalytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(application)
 
         // The internal MutableLiveData for the selected property
         private val _selectedUFCEvent = MutableLiveData<DevByteEvent>()
@@ -29,11 +31,6 @@ import java.io.IOException
         // The external LiveData for the SelectedUFEvent
         val selectedUFEvent: LiveData<DevByteEvent>
             get() = _selectedUFCEvent
-
-        // Initialize the SelectedEvent MutableLiveData
-        init {
-            _selectedUFCEvent.value = eventSelected
-        }
 
         /**
          * The data source this ViewModel will fetch results from.
@@ -105,6 +102,7 @@ import java.io.IOException
          * from JUnit test.
          */
         init {
+            _selectedUFCEvent.value = eventSelected
             // Please read Description above.
             refreshDataFromRepository()
         }
@@ -117,6 +115,8 @@ import java.io.IOException
         open fun refreshDataFromRepository() {
             viewModelScope.launch {
                 try {eventsRepository.refreshUFCEvents()
+                    firebaseAnalytics.setUserProperty("AccessWebServiceProperty", "Playlist of UFC Events downloaded.")
+                    firebaseAnalytics.setUserProperty("UFCEventsCached", "Latest UFC Events cached.")
                     _eventNetworkError.value = false
                     _isNetworkErrorShown.value = false
 

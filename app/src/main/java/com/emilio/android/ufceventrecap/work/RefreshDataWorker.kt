@@ -21,11 +21,13 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.emilio.android.ufceventrecap.database.getDatabase
 import com.emilio.android.ufceventrecap.repository.EventsRepository
+import com.google.firebase.analytics.FirebaseAnalytics
 import retrofit2.HttpException
 import timber.log.Timber
 
 class RefreshDataWorker(appContext: Context, params: WorkerParameters) :
         CoroutineWorker(appContext, params) {
+    private var firebaseAnalytics: FirebaseAnalytics = FirebaseAnalytics.getInstance(appContext)
 
     companion object {
         const val WORK_NAME = "com.emilio.android.ufceventrecap.work.RefreshDataWorker"
@@ -38,6 +40,7 @@ class RefreshDataWorker(appContext: Context, params: WorkerParameters) :
         try {
             repository.refreshUFCEvents( )
             Timber.d("### WorkManager ###: Work request for sync has executed!")
+            firebaseAnalytics.setUserProperty("UFCEventsCached", "Work request for sync has executed!")
         } catch (e: HttpException) {
             return Result.retry()
         }
