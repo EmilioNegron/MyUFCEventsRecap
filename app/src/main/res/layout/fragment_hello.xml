@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="goToDevByteScreen"
+            type="com.emilio.android.ufceventrecap.overview.GoToDevByteScreen" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/HelloFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom|center_horizontal|center_vertical"
+        android:background="@drawable/ufc_event_full_background"
+        android:foregroundGravity="center_vertical|fill_vertical"
+        android:textAlignment="gravity"
+        app:layout_anchorGravity="center_horizontal"
+        tools:context=".overview.HelloFragment">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="20dp"
+            android:clickable="true"
+            android:contentDescription="@string/display_ufc_event_details"
+            android:focusable="true"
+            android:onClick="@{() -> goToDevByteScreen.onClick()}"
+            app:srcCompat="@android:drawable/ic_media_play" />
+
+    </FrameLayout>
+</layout>
