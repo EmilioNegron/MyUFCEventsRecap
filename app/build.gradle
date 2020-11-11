@@ -15,6 +15,7 @@
  */
 
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs"
@@ -117,6 +118,13 @@ dependencies {
 
     // Phoenix Lib for restarting App.
     implementation "com.jakewharton:process-phoenix:$jskewhartonProcessPhoenix"
+
+    // Import the Firebase BoM - Google Analytics
+    implementation platform('com.google.firebase:firebase-bom:26.0.0')
+
+    // Add the dependency for the Firebase SDK for Google Analytics
+    // When using the BoM, don't specify versions in Firebase dependencies.
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
     // AndroidX Test - JVM testing
     testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"

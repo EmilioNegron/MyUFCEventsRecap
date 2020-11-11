@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "290901035267",
+    "firebase_url": "https://myufceventsrecap.firebaseio.com",
+    "project_id": "myufceventsrecap",
+    "storage_bucket": "myufceventsrecap.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290901035267:android:90b72bc73831e14985c136",
+        "android_client_info": {
+          "package_name": "com.emilio.android.ufceventrecap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "290901035267-u01llcfcfah43qj9kn3s87rc848kujck.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.emilio.android.ufceventrecap",
+            "certificate_hash": "51af4a7ccfa4ba71507437aa0e0e527ea76f1c3b"
+          }
+        },
+        {
+          "client_id": "290901035267-i2cbmu565sq0fkd12rg3trb1klgta9c8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfpl02sNy-EOVXJ0yGXISnIe5c4myU-bY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "290901035267-i2cbmu565sq0fkd12rg3trb1klgta9c8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
