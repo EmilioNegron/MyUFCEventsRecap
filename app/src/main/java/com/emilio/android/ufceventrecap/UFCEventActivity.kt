@@ -18,7 +18,6 @@ package com.emilio.android.ufceventrecap
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.emilio.android.ufceventrecap.R
 
 /**
  * This is a single activity application that uses the Navigation library. Content is displayed

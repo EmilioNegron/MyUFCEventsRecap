@@ -94,9 +94,6 @@ dependencies {
     implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
 
-    // joda time library for dealing with time
-    implementation "joda-time:joda-time:$jodaTime"
-
     // arch components
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
@@ -121,14 +118,7 @@ dependencies {
     // Phoenix Lib for restarting App.
     implementation "com.jakewharton:process-phoenix:$jskewhartonProcessPhoenix"
 
-    // Import the Firebase BoM - Google Analytics
-    implementation platform("com.google.firebase:firebase-bom:$firebaseVersion")
-
-    // Add the dependency for the Firebase SDK for Google Analytics
-    // When using the BoM, don't specify versions in Firebase dependencies.
-    implementation 'com.google.firebase:firebase-analytics-ktx'
-
-    // Import the BoM for the Firebase platform
+    // Import the Firebase BoM - Google Analytics and Firebase platform
     implementation platform("com.google.firebase:firebase-bom:$firebaseVersion")
 
     // Declare the dependencies for the Crashlytics and Analytics libraries
